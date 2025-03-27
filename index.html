@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,6 +17,7 @@
     <!-- 添加动画库 -->
     <link href="static/css/animate.min.css" rel="stylesheet">
 </head>
+
 <body class="app-layout">
     <!-- 烟花动画画布 -->
     <canvas id="fireworks-canvas"></canvas>
@@ -77,7 +79,7 @@
                                             <i class="fas fa-check-circle text-success me-2"></i>
                                             <span id="task-status-text">系统空闲中，可以开始新任务</span>
                                         </div>
-                                        
+
                                         <!-- 账号使用情况显示 -->
                                         <div class="usage-info mt-2">
                                             <div class="usage-numbers">
@@ -105,7 +107,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 text-md-end mt-3 mt-md-0">
-                                    <button id="refresh-btn" class="btn btn-outline-secondary me-2" style="display: none;">
+                                    <button id="refresh-btn" class="btn btn-outline-secondary me-2"
+                                        style="display: none;">
                                         <i class="fas fa-sync-alt me-1"></i> 刷新数据
                                     </button>
                                     <button id="start-registration" class="btn btn-primary me-2">
@@ -116,7 +119,7 @@
                                     </button>
                                 </div>
                             </div>
-                            
+
                             <!-- 任务详细信息 -->
                             <div id="task-details" class="mt-4">
                                 <div class="card border-0 bg-light">
@@ -141,7 +144,7 @@
                                                     <span class="text-muted">成功率: </span>
                                                     <span id="success-rate">N/A</span>
                                                     <span class="ms-2">
-                                                        (<span class="text-success" id="successful-runs">0</span> 成功 / 
+                                                        (<span class="text-success" id="successful-runs">0</span> 成功 /
                                                         <span class="text-danger" id="failed-runs">0</span> 失败)
                                                     </span>
                                                 </div>
@@ -150,7 +153,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div id="registration-details" class="mt-3" style="display: none;">
                                 <div class="alert alert-info">
                                     <div class="d-flex align-items-center">
@@ -166,7 +169,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- 账号列表搜索栏 -->
             <div class="row mb-3">
                 <div class="col-md-6 offset-md-6">
@@ -181,7 +184,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- 账号列表 -->
             <div class="row">
                 <div class="col-12">
@@ -208,6 +211,31 @@
                                         <!-- 账号数据将通过JavaScript动态填充 -->
                                     </tbody>
                                 </table>
+                            </div>
+                            <!-- 分页导航 -->
+                            <div
+                                class="pagination-container d-flex justify-content-between align-items-center p-3 bg-light border-top">
+                                <div class="page-info">
+                                    显示 <span id="page-start">1</span>-<span id="page-end">10</span> 条，共 <span
+                                        id="total-accounts">0</span> 条
+                                </div>
+                                <nav aria-label="账号列表分页">
+                                    <ul class="pagination mb-0">
+                                        <li class="page-item disabled" id="page-prev">
+                                            <a class="page-link" href="#" aria-label="上一页">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item active"><a class="page-link" href="#" data-page="1">1</a>
+                                        </li>
+                                        <!-- 其他页码将动态生成 -->
+                                        <li class="page-item" id="page-next">
+                                            <a class="page-link" href="#" aria-label="下一页">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
                             </div>
                         </div>
                     </div>
@@ -239,8 +267,10 @@
                                         <div class="mb-3">
                                             <label for="dynamic-useragent" class="form-label">动态User-Agent</label>
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" role="switch" id="dynamic-useragent" disabled>
-                                                <label class="form-check-label" for="dynamic-useragent">启用动态User-Agent</label>
+                                                <input class="form-check-input" type="checkbox" role="switch"
+                                                    id="dynamic-useragent" disabled>
+                                                <label class="form-check-label"
+                                                    for="dynamic-useragent">启用动态User-Agent</label>
                                             </div>
                                             <small class="text-muted">启用后将从预设的UA列表中随机选择，无需手动配置User-Agent</small>
                                         </div>
@@ -251,7 +281,8 @@
                                         </div>
                                         <div class="mb-3">
                                             <label for="accounts-limit" class="form-label">最大账号数量</label>
-                                            <input type="number" id="accounts-limit" class="form-control" min="1" disabled>
+                                            <input type="number" id="accounts-limit" class="form-control" min="1"
+                                                disabled>
                                             <small class="text-muted">系统允许创建的最大账号数量</small>
                                         </div>
                                     </div>
@@ -262,7 +293,9 @@
                                             <small class="text-muted">用于注册的邮箱域名，多个域名用逗号分隔</small>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="email-username" class="form-label">临时邮箱用户名（只用用户名，示例：ddcat28，访问：https://tempmail.plus/ 获取）</label>
+                                            <label for="email-username"
+                                                class="form-label">临时邮箱用户名（只用用户名，示例：ddcat28，访问：https://tempmail.plus/
+                                                获取）</label>
                                             <input type="text" id="email-username" class="form-control" disabled>
                                             <small class="text-muted">用于接收验证码的临时邮箱用户名</small>
                                         </div>
@@ -286,10 +319,12 @@
                                 <!-- 将按钮容器从text-end改为新的栅格布局 -->
                                 <div class="row mt-4 config-actions" id="config-actions" style="display:none">
                                     <div class="col-6 pe-1">
-                                        <button type="button" id="cancel-config-btn" class="btn btn-secondary w-100">取消</button>
+                                        <button type="button" id="cancel-config-btn"
+                                            class="btn btn-secondary w-100">取消</button>
                                     </div>
                                     <div class="col-6 ps-1">
-                                        <button type="submit" id="save-config-btn" class="btn btn-success w-100">保存配置</button>
+                                        <button type="submit" id="save-config-btn"
+                                            class="btn btn-success w-100">保存配置</button>
                                     </div>
                                 </div>
                             </form>
@@ -310,7 +345,8 @@
     </div>
 
     <!-- 删除确认对话框 -->
-    <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
+    <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteConfirmModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -343,7 +379,8 @@
                         <label for="tokenFullText" class="form-label">完整Token:</label>
                         <div class="input-group">
                             <textarea id="tokenFullText" class="form-control" rows="5" readonly></textarea>
-                            <button class="btn btn-outline-primary copy-btn" type="button" id="copyTokenBtn" title="复制Token">
+                            <button class="btn btn-outline-primary copy-btn" type="button" id="copyTokenBtn"
+                                title="复制Token">
                                 <i class="fas fa-copy"></i>
                             </button>
                         </div>
@@ -364,7 +401,8 @@
     <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 5">
         <div class="d-flex align-items-center small text-muted">
             <span class="me-2">自动刷新（10秒/次）</span>
-            <div class="spinner-border spinner-border-sm text-secondary" role="status" style="width: 0.8rem; height: 0.8rem;">
+            <div class="spinner-border spinner-border-sm text-secondary" role="status"
+                style="width: 0.8rem; height: 0.8rem;">
                 <span class="visually-hidden">Loading...</span>
             </div>
         </div>
@@ -379,4 +417,5 @@
     <!-- 添加菜单交互 JS -->
     <script src="static/js/menu.js"></script>
 </body>
+
 </html>
